@@ -1,0 +1,56 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.container {
+    border: 1px solid black;
+    display: flex; 
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    gap: 10px;
+}
+
+.display, .btnRow1, .btnRow2, .btnRow3, .btnRow4, .btnRow5 {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    gap: 20px;
+}
+
+.display {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 410px;
+    padding-right: 10px;
+    border: 2px solid black;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    font-size: 48px;
+}
+
+.small-btn, .large-btn {
+    border-radius: 25px;
+    font-size: 28px;
+    transition: 0.1s;
+}
+
+button:active {
+    background-color: rgb(180, 180, 180);
+}
+
+.small-btn {
+    width:90px;
+}
+
+.large-btn {
+    width: 200px;
+}
