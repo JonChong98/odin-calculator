@@ -70,7 +70,7 @@ function reset() {
 function setOperator(op) {
     if (operator === "") {
         operator = op;
-        num1 = parseInt(display.textContent, 10);
+        num1 = parseFloat(display.textContent);
         state = "step";
     } else {
         calculate();
@@ -84,10 +84,19 @@ function calculate() {
     if (operator === "divide" &&  display.textContent === "0") {
         alert("How about no");
     } else {
-        num2 = parseInt(display.textContent, 10);
-        let result = operate(num1, num2, operator);
+        num2 = parseFloat(display.textContent);
+        let result = truncate(operate(num1, num2, operator));
         reset();
         updateDisplay(result);
         state = "step";
+    }
+}
+
+function truncate(num) {
+    let result = num.toString();
+    if (result.length <= 15) {
+        return result;
+    } else {
+        return result.substring(0, 15);
     }
 }
