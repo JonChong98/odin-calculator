@@ -1,4 +1,10 @@
 const display = document.querySelector(".display");
+let num1 = "";
+let num2 = "";
+let operator = "";
+let resetDisplay = false;
+
+display.textContent = "";
 
 function add(a, b) {
     return a + b;
@@ -15,11 +21,6 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
-
-let num1 = "";
-let num2 = "";
-let operator = "";
-let state = "";
 
 function operate(n1, n2, op) {
     switch (op) {
@@ -40,16 +41,12 @@ function operate(n1, n2, op) {
     }
 }
 
-function updateDisplay(num) {
-    if (state === "step") {
+function addSymbol(num) {
+    if (resetDisplay) {
         clearDisplay();
-        state = "";
+        resetDisplay = false;
     }
-
     if (display.textContent.length < 15) {
-        if (display.textContent === null) {
-            display.textContent = "";
-        }
         display.textContent += num;
     } else {
         alert("No more space on display!");
@@ -61,42 +58,46 @@ function clearDisplay() {
 }
 
 function reset() {
-    display.textContent = "";
+    clearDisplay();
     num1 = "";
     num2 = "";
     operator = "";
+    resetDisplay = false;
 }
 
 function setOperator(op) {
     if (operator === "") {
         operator = op;
-        num1 = parseFloat(display.textContent);
-        state = "step";
+        if (display.textContent === "") {
+            num1 = 0;
+        } else {
+            num1 = parseFloat(display.textContent);
+        }
+        resetDisplay = true;
     } else {
         calculate();
         operator = "";
         setOperator(op);
     }
-
 }
 
 function calculate() {
     if (operator === "divide" &&  display.textContent === "0") {
         alert("How about no");
     } else {
-        num2 = parseFloat(display.textContent);
-        let result = truncate(operate(num1, num2, operator));
+        if (display.textContent === "") {
+            num2 = num1;
+        } else {
+            num2 = parseFloat(display.textContent);
+        }
+        let result = round(operate(num1, num2, operator));
         reset();
-        updateDisplay(result);
-        state = "step";
+        clearDisplay();
+        addSymbol(result);
+        resetDisplay = true;
     }
 }
 
-function truncate(num) {
-    let result = num.toString();
-    if (result.length <= 15) {
-        return result;
-    } else {
-        return result.substring(0, 15);
-    }
+function round(num) {
+    return Math.round(num * (10**10)) / (10**10);
 }
