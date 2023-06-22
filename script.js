@@ -53,6 +53,11 @@ function addSymbol(num) {
     }
 }
 
+function removeSymbol() {
+    let currText = display.textContent;
+    display.textContent = currText.slice(0, currText.length - 1);
+}
+
 function clearDisplay() {
     display.textContent = "";
 }
