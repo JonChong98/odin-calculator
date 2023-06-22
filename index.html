@@ -16,31 +16,38 @@
                 <button class="small-btn" id="b7" onclick="addSymbol(7)">7</button>
                 <button class="small-btn" id="b8" onclick="addSymbol(8)">8</button>
                 <button class="small-btn" id="b9" onclick="addSymbol(9)">9</button>
-                <button class="small-btn" id="b/" onclick="setOperator('divide')">/</button>
+                <button class="small-btn" id="b/" onclick="setOperator('/')">/</button>
             </div>
             <div class="btnRow2">
                 <button class="small-btn" id="b4" onclick="addSymbol(4)">4</button>
                 <button class="small-btn" id="b5" onclick="addSymbol(5)">5</button>
                 <button class="small-btn" id="b6" onclick="addSymbol(6)">6</button>
-                <button class="small-btn" id="b*" onclick="setOperator('multiply')">*</button>
+                <button class="small-btn" id="b*" onclick="setOperator('*')">*</button>
             </div>
             <div class="btnRow3">
                 <button class="small-btn" id="b1" onclick="addSymbol(1)">1</button>
                 <button class="small-btn" id="b2" onclick="addSymbol(2)">2</button>
                 <button class="small-btn" id="b3" onclick="addSymbol(3)">3</button>
-                <button class="small-btn" id="b+" onclick="setOperator('add')">+</button>
+                <button class="small-btn" id="b+" onclick="setOperator('+')">+</button>
             </div>
             <div class="btnRow4">
                 <button class="small-btn" id="bclear" onclick="removeSymbol()">C</button>
                 <button class="small-btn" id="b0" onclick="addSymbol(0)">0</button>
                 <button class="small-btn" id="b." onclick="addSymbol('.')">.</button>
-                <button class="small-btn" id="b-" onclick="setOperator('subtract')">-</button>
+                <button class="small-btn" id="b-" onclick="setOperator('-')">-</button>
             </div>
             <div class="btnRow5">
                 <button class="large-btn" id="ballClear" onclick="reset()">A/C</button>
                 <button class="large-btn" id="b=" onclick="calculate()">=</button>
             </div>
 
+        </div>
+        <div class="calcInfo">
+            <p>Keyboard shortcuts:</p>
+            <p>Numeric keys and symbols: Number and operator buttons</p>
+            <p>Backspace: C button</p>
+            <p>R: A/C button</p>
+            <p>Enter: = button</p>
         </div>
     </div>
 </body>

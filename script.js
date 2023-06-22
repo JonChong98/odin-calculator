@@ -1,4 +1,6 @@
 const display = document.querySelector(".display");
+const allowedOperators = new Array("+", "-", "*", "/");
+
 let num1 = "";
 let num2 = "";
 let operator = "";
@@ -24,19 +26,20 @@ function divide(a, b) {
 
 function operate(n1, n2, op) {
     switch (op) {
-        case "add":
+        case "+":
             return add(n1, n2);
             break;
-        case "subtract":
+        case "-":
             return subtract(n1, n2);
             break;
-        case "multiply":
+        case "*":
             return multiply(n1, n2);
             break;
-        case "divide":
+        case "/":
             return divide(n1, n2);
             break;
         default:
+            console.log(`n1: ${n1}\nn2:${n2}\nop:${op}`);
             console.log("Error");
     }
 }
@@ -46,6 +49,11 @@ function addSymbol(num) {
         clearDisplay();
         resetDisplay = false;
     }
+
+    if (display.textContent.includes(".") && num === ".") {
+        return;
+    }
+    
     if (display.textContent.length < 15) {
         display.textContent += num;
     } else {
@@ -87,7 +95,11 @@ function setOperator(op) {
 }
 
 function calculate() {
-    if (operator === "divide" &&  display.textContent === "0") {
+    if (num1 === "") {
+        return;
+    }
+
+    if (operator === "/" &&  display.textContent === "0") {
         alert("How about no");
     } else {
         if (display.textContent === "") {
@@ -104,5 +116,31 @@ function calculate() {
 }
 
 function round(num) {
-    return Math.round(num * (10**10)) / (10**10);
+    return Math.round(num * (10**8)) / (10**8);
+}
+
+document.onkeydown = e => {
+    if (!isNaN(parseFloat(e.key))) {
+        addSymbol(parseFloat(e.key));
+    }
+
+    if (allowedOperators.includes(e.key)) {
+        setOperator(e.key);
+    }
+
+    if (e.key === "=" || e.key === "Enter") {
+        calculate();
+    }
+
+    switch (e.key) {
+        case ".":
+            addSymbol(".");
+            break;
+        case "Backspace":
+            removeSymbol();
+            break;
+        case "r":
+            reset();
+        default:
+    }
 }
